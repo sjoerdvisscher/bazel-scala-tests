@@ -5,5 +5,5 @@ scala_test(
     srcs = [
         "ExampleSpec.scala",
     ],
-    deps = ["//src/main/scala/com/github/liucijus/coverage/scalatest"],
+    deps = ["//src/main/scala:scalatest"],
 )

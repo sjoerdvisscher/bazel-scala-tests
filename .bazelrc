@@ -1,7 +1,3 @@
-build --java_toolchain=//tools/jdk:java8_toolchain
-build --host_java_toolchain=//tools/jdk:java8_toolchain
-
-build --javabase=//tools/jdk:jdk8
-build --host_javabase=//tools/jdk:jdk8
-
-build --extra_toolchains=@io_bazel_rules_scala//scala:code_coverage_toolchain
+coverage --extra_toolchains=@io_bazel_rules_scala//scala:code_coverage_toolchain
+coverage --combined_report=lcov
+coverage --coverage_report_generator="@bazel_tools//tools/test/CoverageOutputGenerator/java/com/google/devtools/coverageoutputgenerator:Main"
