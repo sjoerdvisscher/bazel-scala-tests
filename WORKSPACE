@@ -14,34 +14,24 @@ http_archive(
 
 
 
-rules_scala_version = "87b2f439a918efb1adb695ee662dcce03b064ea3"
+rules_scala_version = "332a9861156d2e525352851208b5cec8b633ce0a"
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "5ffa3a1c39e29fa24ff99b3f5e7f12107fc78c475b7454825c580a9224044434",
+    sha256 = "d3ca95b7db32fe649345747f4bce8556ac34d786158b2fe4be90f94b2924c3dd",
     strip_prefix = "rules_scala-%s" % rules_scala_version,
     type = "zip",
     url = "https://github.com/bazelbuild/rules_scala/archive/%s.zip" % rules_scala_version,
 )
 
-# uncomment for newer rules_scala
-#load("@io_bazel_rules_scala//:version.bzl", "bazel_version")
-#bazel_version(name = "bazel_version")
-
-load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
-
-scala_register_toolchains()
+load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+scala_config()
 
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
+scala_repositories()
 
-scala_repositories((
-    "2.12.10",
-    {
-        "scala_compiler": "cedc3b9c39d215a9a3ffc0cc75a1d784b51e9edc7f13051a1b4ad5ae22cfbc0c",
-        "scala_library": "0a57044d10895f8d3dd66ad4286891f607169d948845ac51e17b4c1cf0ab569d",
-        "scala_reflect": "56b609e1bab9144fb51525bfa01ccd72028154fc40a58685a1e9adcbe7835730",
-    },
-))
+load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
+scala_register_toolchains()
 
 protobuf_version = "3.11.3"
 
